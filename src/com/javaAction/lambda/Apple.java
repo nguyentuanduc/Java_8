@@ -17,8 +17,11 @@ public class Apple {
 		this.weight = weight;
 	}
 
-
+    
 	
 
-
+	@Override
+	public String toString() {
+		return "Apple [weight=" + weight + "]";
+	}
 }
