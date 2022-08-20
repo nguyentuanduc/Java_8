@@ -15,9 +15,46 @@ public class MyMain {
 
 	public static void main(String[] args) {
 		
-		testFunction();
+		testMethodReferenceType();
 	}
 	
+	
+	public static void testMethodReferenceStatic() {
+		List<Apple> appleList = initDate();
+		
+		
+		for(Apple a : appleList) {
+			System.out.print(" " + a.getWeight());
+		}
+		System.out.println();
+		
+		Collections.sort(appleList, (Apple::comparing));
+		for(Apple a : appleList) {
+			System.out.print(" " + a.getWeight());
+		}
+	}
+	
+	public static void testMethodReferenceObject() {
+		List<Apple> appleList = initDate();
+		for(Apple a : appleList) {
+			System.out.print(" " + a.getWeight());
+		}
+		System.out.println();
+		
+		Apple apple = new Apple(null);
+		List<Integer> apples = mapMethodReference(appleList, apple::doubleWeight);
+
+		for(Integer a : apples) {
+			System.out.print(" " + a);
+		}
+		System.out.println();
+	}
+	
+	
+	public static void testMethodReferenceType() {
+		List<Apple> appleList = initDate();
+		appleList.forEach(System.out::println);
+	}
 	
 	public void testBufferedReader() {
 		try {
@@ -89,7 +126,7 @@ public class MyMain {
 		}
 		System.out.println();
 		// Collections.sort(appleList, new MyComparator());
-		// Collections.sort(appleList, (Apple ap1, Apple ap2) -> ap1.getWeight().compareTo(ap2.getWeight()));
+		Collections.sort(appleList, (Apple ap1, Apple ap2) -> ap1.getWeight().compareTo(ap2.getWeight()));
 		Collections.sort(appleList, new Comparator<Apple>() {
 
 			@Override
@@ -123,6 +160,15 @@ public class MyMain {
 		return result;
 	}
 	
+	public static <T, R> List<R> mapMethodReference(List<T> list, Function<T, R> f)
+	{
+		List<R> result = new ArrayList<>();
+		for(T s : list)
+		{
+			result.add(f.apply(s));
+		}
+		return result;
+	}
 	
 	public static <T> void forEach(List<T> list, Consumer<T> c)
 	{

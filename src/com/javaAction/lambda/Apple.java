@@ -17,9 +17,15 @@ public class Apple {
 		this.weight = weight;
 	}
 
-    
-	
+	public static int comparing(Apple a1, Apple a2) {
+		return a1.getWeight().compareTo(a2.getWeight());
+	}
 
+	public int doubleWeight(Apple a1) {
+		return a1.getWeight()*2;
+	}
+	
+	
 	@Override
 	public String toString() {
 		return "Apple [weight=" + weight + "]";
