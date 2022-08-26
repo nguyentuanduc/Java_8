@@ -7,9 +7,7 @@ public class Parallel {
 
 	public static void main(String[] args) {
 		System.out.println(1L);
-		long result = measureSumPerf(Parallel::sequentialSum, 10000000);
-		System.out.println(result);
-		
+		long result = measureSumPerf(Parallel::sequentialSum, 10000000);	
 		System.out.println(measureSumPerf(Parallel::iterativeSum, 10000000));
 		System.out.println(measureSumPerf(Parallel::parallelSum, 10000000));
 	}
